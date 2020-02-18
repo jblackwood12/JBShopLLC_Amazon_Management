@@ -1,0 +1,42 @@
+﻿namespace AmazonProductLookup.AdvApi
+{
+	public enum ResponseGroup
+	{
+		Accessories = 1,
+		AlternateVersions = 2,
+		BrowseNodeInfo = 3,
+		BrowseNodes = 4,
+		Cart = 5,
+		CartNewReleases = 6,
+		CartTopSellers = 7,
+		CartSimilarities = 8,
+		EditorialReview = 9,
+		Images = 10,
+		ItemAttributes = 11,
+		ItemIds = 12,
+		Large = 13,
+		Medium = 14,
+		MostGifted = 15,
+		MostWishedFor = 16,
+		NewReleases = 17,
+		OfferFull = 18,
+		OfferListings = 19,
+		Offers = 20,
+		OfferSummary = 21,
+		PromotionSummary = 22,
+		RelatedItems = 23,
+		Request = 24,
+		Reviews = 25,
+		SalesRank = 26,
+		SearchBins = 27,
+		Similarities = 28,
+		Small = 29,
+		TopSellers = 30,
+		Tracks = 31,
+		Variations = 32,
+		VariationImages = 33,
+		VariationMatrix = 34,
+		VariationOffers = 35,
+		VariationSummary = 36
+	}
+}

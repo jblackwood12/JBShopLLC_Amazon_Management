@@ -1,0 +1,100 @@
+﻿@using Models
+@using Utility
+
+@model WebApplication.ViewModels.ProductProfitabilityMetadata
+
+@{
+	ViewBag.Title = "Product Evaluation";
+}
+
+<script type="text/javascript">
+	function CalculateProfitability() {
+		var feeCategory = document.getElementById('FeeCategory').value;
+		var length = document.getElementById('Length').value;
+		var width = document.getElementById('Width').value;
+		var height = document.getElementById('Height').value;
+		var weight = document.getElementById('Weight').value;
+		var purchasePrice = document.getElementById('PurchasePrice').value;
+		var lowestPrice = document.getElementById('LowestPrice').value;
+		var costPerPoundToShip = document.getElementById('CostPerPoundToShip').value;
+		var flatCostToShip = document.getElementById('FlatCostToShip').value;
+
+		$.ajax({
+			url: '../../Product/EvaluateCalculate',
+			type: 'POST',
+			dataType: 'json',
+			contentType: 'application/json',
+			data: JSON.stringify({
+				FeeCategory: feeCategory,
+				PurchasePrice: purchasePrice,
+				LowestPrice: lowestPrice,
+				Length: length,
+				Width: width,
+				Height: height,
+				Weight: weight,
+				CostPerPoundToShip: costPerPoundToShip,
+				FlatCostToShip: flatCostToShip
+			}),
+			success: function (data) {
+				document.getElementById('BreakEvenPrice').innerHTML = '$' + data.BreakEvenPrice.toFixed(2);
+				document.getElementById('ProfitMargin').innerHTML = (data.ProfitMargin.toFixed(4) * 100) + '%';
+			}
+		});
+	}
+
+	function ClearFields() {
+		document.getElementById('PurchasePrice').value = '';
+		document.getElementById('LowestPrice').value = '';
+		document.getElementById('BreakEvenPrice').innerHTML = '';
+		document.getElementById('ProfitMargin').innerHTML = '';
+		document.getElementById('CostPerPoundToShip').innerHTML = '';
+		document.getElementById('FlatCostToShip').innerHTML = '';
+	}
+</script>
+
+<h1>Evaluate Profitability</h1>
+
+On this page we will evaluate the profitability of an individual product.
+<br/>
+Fill in an ASIN, as well as the LowestPrice it is listed for on Amazon, and the PurchasePrice.
+<br/>
+<br/>
+
+<div style="border: 1px;">
+		Length (in): <input type="text" id="Length" value="@Model.Length" />
+		<br />
+		Width (in): <input type="text" id="Width" value="@Model.Width" />
+		<br />
+		Height (in): <input type="text" id="Height" value="@Model.Height" />
+		<br />
+		Weight (lbs): <input type="text" id="Weight" value="@Model.Weight" />
+		<br />
+		Sellers Rank: <input type="text" disabled="disabled" id="SellersRank" value="@Model.SellersRank" />
+		<br />
+		Fee Category: @Html.DropDownList("FeeCategory", FeeCategory.HomeAndGarden.ToSelectList())
+		<br />
+		Purchase Price: <input type="text" id="PurchasePrice" />
+		<br />
+		Cost Per Pound To Ship: <input type="text" id="CostPerPoundToShip" />
+		<br />
+		Flat Cost To Ship: <input type="text" id="FlatCostToShip" />
+		<br />
+		Lowest Price: <input type="text" id="LowestPrice" />
+		<br />
+
+		<div>
+			<input type="submit" value="Calculate" onclick="CalculateProfitability()" />
+		</div>
+
+		<br />
+		<br />
+
+		<h2>Results:</h2>
+		<div>
+			Break Even Price: <span id="BreakEvenPrice"></span>
+			<br />
+			Profit Margin: <span id="ProfitMargin"></span>
+		</div>
+
+		<button onclick="ClearFields()" id="clearButton">Clear All Fields</button>
+</div>

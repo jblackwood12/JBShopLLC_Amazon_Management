@@ -1,0 +1,151 @@
+﻿@{
+	ViewBag.Title = "Edit Products";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Styles.Render("~/bundles/css/typeahead")
+@Scripts.Render("~/bundles/js/typeahead")
+@Scripts.Render("~/bundles/js/angularjs")
+
+<h1>Edit or Create <b>Product</b></h1>
+
+<div ng-app="productEdit" ng-controller="ProductEditController">
+	<div>
+		<div id="searchTypeahead">
+			<input class="typeahead" type="text" placeholder="Search for an existing product to edit...">
+		</div>
+	</div>
+
+	<div id="editForm">
+		<fieldset style="border:0;">
+			<br/>
+			<label for="Name">Name:</label>
+			<input type="text" id="Name" ng-model="CurrentProduct.Name" />
+			<br />
+
+			<label for="CreatedDate">Created Date:</label>
+			<input type="text" id="CreatedDate" ng-model="CurrentProduct.CreatedDate" ng-disabled="true" />
+			<br />
+
+			<label for="ModifiedDate">Modified Date: </label>
+			<input type="text" id="ModifiedDate" ng-model="CurrentProduct.ModifiedDate" ng-disabled="true" />
+			<br />
+
+			<label for="UPC">UPC: </label>
+			<input type="text" id="UPC" ng-model="CurrentProduct.UPC" />
+			<br />
+
+			<label for="Cost">Cost: </label>
+			<input type="text" id="Cost" ng-model="CurrentProduct.Cost" />
+			<br />
+
+			<label for="PromotionCost">Promotion Cost:</label>
+			<input type="text" id="PromotionCost" ng-model="CurrentProduct.PromotionCost" />
+			<br />
+
+			<label for="OverrideCost">Override Cost:</label>
+			<input type="text" id="OverrideCost" ng-model="CurrentProduct.OverrideCost" />
+			<br />
+
+			<label for="MAPPrice">MAP Price:</label>
+			<input type="text" id="MAPPrice" ng-model="CurrentProduct.MAPPrice" />
+			<br />
+			
+			<label for="MinPrice">Min Price:</label>
+			<input type="text" id="MinPrice" ng-model="CurrentProduct.MinPrice" />
+			<br />
+			
+			<label for="MaxPrice">Max Price:</label>
+			<input type="text" id="MaxPrice" ng-model="CurrentProduct.MaxPrice" />
+			<br />
+			
+			<label for="BreakevenPrice">Breakeven Price:</label>
+			<input type="text" id="BreakevenPrice" ng-model="CurrentProduct.BreakevenPrice" />
+			<br />
+
+			<label for="QuantityInCase">Quantity In Case: </label>
+			<input type="text" id="QuantityInCase" ng-model="CurrentProduct.QuantityInCase" />
+			<br />
+
+			<label for="ASIN">ASIN: </label>
+			<input type="text" id="ASIN" ng-model="CurrentProduct.ASIN" name="ASIN" />
+			<br />
+
+			<label for="SKU">SKU: </label>
+			<input type="text" id="SKU" ng-model="CurrentProduct.SKU" />
+			<br />
+
+			<label for="ItemNumber">Item Number: </label>
+			<input type="text" id="ItemNumber" ng-model="CurrentProduct.ItemNumber" />
+			<br />
+
+			<label for="ManufacturerId">Manufacturer Id: </label>
+			<input type="text" id="ManufacturerId" ng-model="CurrentProduct.ManufacturerId" name="ManufacturerId" />
+			<br />
+
+			<label for="Length">Length: </label>
+			<input type="text" id="Length" ng-model="CurrentProduct.Length" />
+			<br />
+
+			<label for="Width">Width: </label>
+			<input type="text" id="Width" ng-model="CurrentProduct.Width" />
+			<br />
+
+			<label for="Height">Height: </label>
+			<input type="text" id="Height" ng-model="CurrentProduct.Height" />
+			<br />
+
+			<label for="Weight">Weight: </label>
+			<input type="text" id="Weight" ng-model="CurrentProduct.Weight" />
+			<br />
+
+			<label for="IsMAP">IsMAP: </label>
+			<input type="checkbox" id="IsMAP" ng-model="CurrentProduct.IsMAP" />
+			<br />
+
+			<label for="IsDiscontinued" >IsDiscontinued: </label>
+			<input type="checkbox" id="IsDiscontinued" ng-model="CurrentProduct.IsDiscontinued" />
+			<br/>
+
+			<label for="Notes">Notes: </label>
+			<textarea ng-model="CurrentProduct.Notes" name="Notes" ng-maxlength="1000" rows="3" cols="40"></textarea>
+			<br/>
+
+			<div style="padding-top: 12px; text-align: center; width: 300px;">
+				<div style="float:left;">
+					<input type="button" ng-click="EditProduct()" value="{{ IsCreate ? 'Create' : 'Save Changes'}}" class="btn btn-default btn-lg" />
+				</div>
+				
+				<div style="float:right">
+					<input id="resetButton" type="button" ng-click="ResetAll()" value="Reset" class="btn btn-danger btn-lg" />
+				</div>
+			</div>
+		</fieldset>
+	</div>
+</div>
+
+<script type="text/javascript" src="~/Scripts/data/Product/ProductEdit.js"></script>
+
+<style type="text/css">
+	#editForm input[type="text"] {
+		width: 300px;
+	}
+
+	#editForm input[type="checkbox"] {
+		width: 50px;
+	}
+
+	 #editForm {
+		 width: 500px;
+	 }
+		
+	#editForm label {
+		display: inline-block;
+		width: 150px;
+	}
+
+	#searchTypeahead .tt-dropdown-menu {
+		max-height: 300px;
+		overflow-y: auto;
+	}
+</style>

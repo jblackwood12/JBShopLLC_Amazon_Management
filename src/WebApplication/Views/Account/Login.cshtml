@@ -1,0 +1,39 @@
+﻿@model WebApplication.Models.Authentication.LoginModel
+
+@{
+	ViewBag.Title = "Log in";
+}
+
+<body style="background-color: #d0d0d0;">
+
+	<div style="border: 1px solid; border-color: black; width: 275px; margin-left: 10px; margin-top: 20px; padding-left: 10px; background-color: white;">
+		<div style="text-align: center; padding-bottom: 6px; padding-top: 10px;">
+			<img src="/Content/Images/logo.jpg" />
+		</div>
+
+		<section id="loginForm">
+			@using (Html.BeginForm(new { ViewBag.ReturnUrl }))
+			{
+				@Html.AntiForgeryToken()
+				@Html.ValidationSummary(true)
+
+				<fieldset style="width: 300px; border: 0; font-size: 18px;">
+					@Html.LabelFor(m => m.UserName)
+					@Html.TextBoxFor(m => m.UserName)
+					<br/>
+					@Html.ValidationMessageFor(m => m.UserName)
+					@Html.LabelFor(m => m.Password)
+					@Html.PasswordFor(m => m.Password)
+					@Html.ValidationMessageFor(m => m.Password)
+					<br/>
+					@Html.CheckBoxFor(m => m.RememberMe)
+					@Html.LabelFor(m => m.RememberMe)
+					<br/>
+					<br/>
+					<input type="submit" class="btn btn-default" value="Log in" />
+				</fieldset>
+			}
+		</section>
+	</div>
+
+</body>

@@ -1,0 +1,42 @@
+﻿@{
+	ViewBag.Title = "Unpriced Products";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Scripts.Render("~/bundles/js/angularjs")
+
+<h1>Unpriced Products</h1>
+<div ng-app="unpricedProducts" ng-controller="UnpricedProductsController">
+	<h3>{{ unpricedProductsList.length }} products are unpriced.</h3>
+	<br/>
+	<table class="productList">
+		<tbody>
+			<tr>
+				<th>Product Name</th>
+				<th>ASIN</th>
+				<th>SKU</th>
+				<th>Warehouse Quantity</th>
+				<th>Fulfillable Quantity</th>
+			</tr>
+			<tr ng-repeat="unpricedProduct in unpricedProductsList">
+				<td>{{ unpricedProduct.ProductName }}</td>
+				<td>{{ unpricedProduct.ASIN }}</td>
+				<td>{{ unpricedProduct.SKU }}</td>
+				<td>{{ unpricedProduct.WarehouseQuantity }}</td>
+				<td>{{ unpricedProduct.FulfillableQuantity }}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+	
+<script type="text/javascript" src="~/Scripts/data/Report/UnpricedProductsReport.js" ></script >
+
+<style type="text/css">
+	.productList td {
+		padding: 4px;
+	}
+
+	.productList th {
+		padding: 4px;
+	}
+</style>

@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E11B5449-0609-4026-A972-F0CB5C3CB139}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Models</RootNamespace>
+    <AssemblyName>Models</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FBAInboundServiceMWS">
+      <HintPath>..\..\lib\FBAInboundServiceMWS.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdvApi\IdType.cs" />
+    <Compile Include="AdvApi\Operation.cs" />
+    <Compile Include="AdvApi\ProductAdvApiResponse.cs" />
+    <Compile Include="Alias.cs" />
+    <Compile Include="CreatedShipment.cs" />
+    <Compile Include="CreateShipmentResponse.cs" />
+    <Compile Include="CreateShipmentRequest.cs" />
+    <Compile Include="Dimensions.cs" />
+    <Compile Include="FeeCategory.cs" />
+    <Compile Include="FeePreview.cs" />
+    <Compile Include="FulfillmentChannel.cs" />
+    <Compile Include="CurrentInventory.cs" />
+    <Compile Include="InventoryHistorySnapshot.cs" />
+    <Compile Include="InventorySummary.cs" />
+    <Compile Include="ItemCondition.cs" />
+    <Compile Include="Listing.cs" />
+    <Compile Include="LookupAmazonListingRequest.cs" />
+    <Compile Include="LookupAmazonListingResponse.cs" />
+    <Compile Include="ManufacturerPriceListRowInput.cs" />
+    <Compile Include="ManufacturerPriceListRowOutput.cs" />
+    <Compile Include="MwsInboundShipmentApi\InboundShipmentContainer.cs" />
+    <Compile Include="MwsInboundShipmentApi\InboundShipmentItemAndDetails.cs" />
+    <Compile Include="Offer.cs" />
+    <Compile Include="Order.cs" />
+    <Compile Include="OrderSummary.cs" />
+    <Compile Include="Product.cs" />
+    <Compile Include="LookupProductRequest.cs" />
+    <Compile Include="LookupProductResponse.cs" />
+    <Compile Include="ProductAndProductMetadata.cs" />
+    <Compile Include="ProductMetadata.cs" />
+    <Compile Include="ProductProfitabilityRequest.cs" />
+    <Compile Include="ProductSearchMethod.cs" />
+    <Compile Include="InventoryReportLine.cs" />
+    <Compile Include="ProductSearchResult.cs" />
+    <Compile Include="ReportType.cs" />
+    <Compile Include="RepricingInformation.cs" />
+    <Compile Include="ResponseGroup.cs" />
+    <Compile Include="AdvApi\SearchIndex.cs" />
+    <Compile Include="ParameterType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="InputType.cs" />
+    <Compile Include="Sanitize.cs" />
+    <Compile Include="SellerType.cs" />
+    <Compile Include="ShipmentItem.cs" />
+    <Compile Include="UnpricedProduct.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MwsApi\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

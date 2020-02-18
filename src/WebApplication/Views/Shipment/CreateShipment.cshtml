@@ -1,0 +1,50 @@
+﻿@model WebApplication.Models.CreateShipmentFile
+
+@{
+	ViewBag.Title = "Create Shipment";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create Shipment</h1>
+Upload various items that shipments should be created from.
+<br/>
+All or none of your items should have QuantityInCase.
+<br />
+Date is automatically appended to the shipment name.
+<br/>
+<br/>
+<div style="overflow: hidden;">
+	<div style="float: left;">
+		<b>Required columns:</b>
+		<br />
+		Name, ItemNumber, Asin, Sku, Quantity, Cost
+		<br/>
+		<br />
+		<b>Optional columns:</b>
+		<br />QuantityInCase
+	</div>
+
+	<div style="float: left; padding-left: 20px; padding-top: 24px;">
+		<a href="@Url.Action("CreateShipmentTemplate", "Shipment")">
+			<img src="/Content/Images/excel_icon.png" style="width: 50px; height: 50px;">
+			Download Template
+		</a>
+	</div>
+</div>
+
+<br/>
+
+@using (Html.BeginForm("CreateShipmentResult", "Shipment", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+	<fieldset class="fieldset">
+		Shipment Name: @Html.TextBoxFor(model => model.ShipmentName)
+		<br/>
+		<div style="padding-top: 8px;">
+			<input type="file" id="File" name="File"/>
+		</div>
+		<br/>
+		<div>
+			<input type ="submit" value="Submit" class="btn btn-default btn-lg"/>
+		</div>
+	</fieldset>
+}

@@ -1,0 +1,77 @@
+﻿@using WebApplication.Models
+
+@model ProductsToAdd
+
+@{
+	ViewBag.Title = "Manage Items";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+	.ui-autocomplete-loading {
+		background: white url('/Content/Images/ui-anim_basic_16x16.gif') right center no-repeat;
+	}
+	#manufacturer { width: 25em; }
+</style>
+
+<script type="text/javascript">
+	$(function () {
+		$("#manufacturer").autocomplete({
+			source: function (request, response) {
+				$.ajax({
+					url: "Item/FindManufacturer",
+					type: 'POST',
+					dataType: "json",
+					data: {
+						manufacturerString: request.term
+					},
+					success: function (data) {
+						response($.map(data, function (item) {
+							return {
+								label: item.Name,
+								value: item.Name,
+								Id: item.Id
+							};
+						}));
+					}
+				});
+			},
+			minLength: 1,
+			select: function (event, ui) {
+				document.getElementById("ManufacturerId").value = ui.item.Id;
+			},
+			open: function () {
+				$(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+			},
+			close: function () {
+				$(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+			}
+		});
+	});
+</script>
+
+<h1>Manage Items</h1>
+<br/>
+To add new items, first select the appropriate manufacturer.
+<br/>
+<br/>
+
+@using (Html.BeginForm("AddProducts", "AddProduct", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+	<fieldset>
+		<div class="ui-widget">
+			<label for="manufacturer">Search for Manufacturer: </label>
+			<input id="manufacturer" />
+		</div>
+
+		<input type="hidden" name="ManufacturerId" id="ManufacturerId" />
+		<br/>
+		<div>
+			<input type="file" id="File" name="File"/>
+		</div>
+		<br/>
+		<div>
+			<input type="submit" value="Submit" />
+		</div>
+	</fieldset>
+}

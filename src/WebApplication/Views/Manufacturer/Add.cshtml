@@ -1,0 +1,33 @@
+﻿@using WebApplication.Models
+
+@model CreateManufacturer
+
+@{
+	ViewBag.Title = "Manufacturer";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="page-wrapper">
+
+	<div class="row">
+		<div class="col-lg-12">
+			<h1>Add Manufacturer</h1>
+			On this page we will allow for creation of Manufacturers.
+
+			<br />
+			<br />
+			Create Manufacturer
+
+			@using (Html.BeginForm("Create", "Manufacturer", FormMethod.Post))
+			{
+				<fieldset class="fieldset">
+					Manufacturer Name: @Html.TextBoxFor(model => model.ManufacturerName)
+
+					<div>
+						<input type="submit" value="Submit" />
+					</div>
+				</fieldset>
+			}
+		</div>
+	</div>
+</div>

@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="amazonmws" Class="AmazonMWSdbDataContext" AccessModifier="Internal" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=" SettingsObjectName="Data.Properties.Settings" SettingsPropertyName="amazonmwsConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Manufacturers" Member="Manufacturers">
+    <Type Name="Manufacturer">
+      <Column Name="ManufacturerId" Type="System.Int32" DbType="INT NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Manufacturer_Product" Member="Products" ThisKey="ManufacturerId" OtherKey="ManufacturerId" Type="Product" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AllOrdersData" Member="AllOrdersDatas">
+    <Type Name="AllOrdersData">
+      <Column Name="[amazon-order-id]" Member="amazon_order_id" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="sku" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="asin" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="[product-name]" Member="product_name" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="[merchant-order-id]" Member="merchant_order_id" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="[purchase-date]" Member="purchase_date" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="[last-updated-date]" Member="last_updated_date" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="[order-status]" Member="order_status" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="[fulfillment-channel]" Member="fulfillment_channel" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="[sales-channel]" Member="sales_channel" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="[order-channel]" Member="order_channel" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="url" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[ship-service-level]" Member="ship_service_level" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="[item-status]" Member="item_status" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="quantity" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="currency" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="[item-price]" Member="item_price" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="[item-tax]" Member="item_tax" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="[shipping-price]" Member="shipping_price" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="[shipping-tax]" Member="shipping_tax" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="[gift-wrap-price]" Member="gift_wrap_price" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="[gift-wrap-tax]" Member="gift_wrap_tax" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="[item-promotion-discount]" Member="item_promotion_discount" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="[ship-promotion-discount]" Member="ship_promotion_discount" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="[ship-city]" Member="ship_city" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[ship-state]" Member="ship_state" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="[ship-postal-code]" Member="ship_postal_code" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="[ship-country]" Member="ship_country" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[promotion-ids]" Member="promotion_ids" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Product_AllOrdersData" Member="Product" ThisKey="asin" OtherKey="ASIN" Type="Product" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UnsuppressedInventoryData" Member="UnsuppressedInventoryDatas">
+    <Type Name="UnsuppressedInventoryData">
+      <Column Name="UnsuppressedInventoryDataId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="sku" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="fnsku" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="asin" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[product-name]" Member="product_name" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="condition" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="[your-price]" Member="your_price" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="[mfn-listing-exists]" Member="mfn_listing_exists" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="[mfn-fulfillable-quantity]" Member="mfn_fulfillable_quantity" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="[afn-listing-exists]" Member="afn_listing_exists" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="[afn-warehouse-quantity]" Member="afn_warehouse_quantity" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="[afn-fulfillable-quantity]" Member="afn_fulfillable_quantity" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="[afn-unsellable-quantity]" Member="afn_unsellable_quantity" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="[afn-reserved-quantity]" Member="afn_reserved_quantity" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="[afn-total-quantity]" Member="afn_total_quantity" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="[per-unit-volume]" Member="per_unit_volume" Type="System.Decimal" DbType="Decimal(18,9)" CanBeNull="true" />
+      <Column Name="[afn-inbound-working-quantity]" Member="afn_inbound_working_quantity" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="[afn-inbound-shipped-quantity]" Member="afn_inbound_shipped_quantity" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="[afn-inbound-receiving-quantity]" Member="afn_inbound_receiving_quantity" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Association Name="Product_UnsuppressedInventoryData" Member="Product" ThisKey="asin" OtherKey="ASIN" Type="Product" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FeePreviewData" Member="FeePreviewDatas">
+    <Type Name="FeePreviewData">
+      <Column Name="FeePreviewId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="sku" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="fnsku" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="asin" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[product-name]" Member="product_name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[product-group]" Member="product_group" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="brand" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[fulfilled-by]" Member="fulfilled_by" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[your-price]" Member="your_price" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[sales-price]" Member="sales_price" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[longest-side]" Member="longest_side" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[median-side]" Member="median_side" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[shortest-side]" Member="shortest_side" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[length-and-girth]" Member="length_and_girth" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[unit-of-dimension]" Member="unit_of_dimension" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[item-package-weight]" Member="item_package_weight" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[unit-of-weight]" Member="unit_of_weight" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[product-size-tier]" Member="product_size_tier" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="currency" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[estimated-fee]" Member="estimated_fee" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[estimated-referral-fee-per-unit]" Member="estimated_referral_fee_per_unit" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[estimated-variable-closing-fee]" Member="estimated_variable_closing_fee" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[estimated-order-handling-fee-per-order]" Member="estimated_order_handling_fee_per_order" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[estimated-pick-pack-fee-per-unit]" Member="estimated_pick_pack_fee_per_unit" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="[estimated-weight-handling-fee-per-unit]" Member="estimated_weight_handling_fee_per_unit" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Association Name="Product_FeePreviewData" Member="Product" ThisKey="asin" OtherKey="ASIN" Type="Product" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PriceHistory" Member="PriceHistories">
+    <Type Name="PriceHistory">
+      <Column Name="PriceHistoryId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NewPrice" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="TimeStamp" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Column Name="ASIN" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="BreakEvenPrice" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="MyOfferPriceInNotification" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="AmazonsOfferPriceInNotification" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="LowestFbaOfferPriceInNotification" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="LowestNonFbaOfferPriceInNotification" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="LastNotificationPublishDateTime" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="MyPriceFromProductsApi" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="ListingOffersSource" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Association Name="PriceHistory_Product" Member="Products" ThisKey="ASIN" OtherKey="ASIN" Type="Product" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ListingOffersLog" Member="ListingOffersLogs">
+    <Type Name="ListingOffersLog">
+      <Column Name="NotificationLogId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ASIN" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="PublishDateTime" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Column Name="LowestFbaPrice" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="LowestNonFbaPrice" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="OurPrice" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="ListingOffersSource" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="BuyBoxWinnerSellerType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BuyBoxPrice" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Products" Member="Products">
+    <Type Name="Product">
+      <Column Name="ProductId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Column Name="UPC" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Cost" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="PromotionCost" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="OverrideCost" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="MAPPrice" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="MinPrice" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="MaxPrice" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="BreakevenPrice" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="QuantityInCase" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ASIN" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="SKU" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="ItemNumber" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ManufacturerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Length" Type="System.Decimal" DbType="Decimal(9,6)" CanBeNull="true" />
+      <Column Name="Width" Type="System.Decimal" DbType="Decimal(9,6)" CanBeNull="true" />
+      <Column Name="Height" Type="System.Decimal" DbType="Decimal(9,6)" CanBeNull="true" />
+      <Column Name="Weight" Type="System.Decimal" DbType="Decimal(9,6)" CanBeNull="true" />
+      <Column Name="IsMAP" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsDiscontinued" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Association Name="Product_AllOrdersData" Member="AllOrdersDatas" ThisKey="ASIN" OtherKey="asin" Type="AllOrdersData" />
+      <Association Name="Product_UnsuppressedInventoryData" Member="UnsuppressedInventoryDatas" ThisKey="ASIN" OtherKey="asin" Type="UnsuppressedInventoryData" />
+      <Association Name="Product_FeePreviewData" Member="FeePreviewDatas" ThisKey="ASIN" OtherKey="asin" Type="FeePreviewData" />
+      <Association Name="Manufacturer_Product" Member="Manufacturer" ThisKey="ManufacturerId" OtherKey="ManufacturerId" Type="Manufacturer" IsForeignKey="true" />
+      <Association Name="PriceHistory_Product" Member="PriceHistory" ThisKey="ASIN" OtherKey="ASIN" Type="PriceHistory" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,23 @@
+﻿@model WebApplication.Models.GetShipmentRequest
+
+@{
+	ViewBag.Title = "Manage Shipment";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Manage Shipment</h1>
+
+Specify the ShipmentId of data to be retrieved.
+<br/>
+<br/>
+
+@using (Html.BeginForm("GetShipmentData", "Shipment", FormMethod.Post))
+{
+	<fieldset class="fieldset">
+		Shipment Id: @Html.TextBoxFor(model => model.ShipmentId)
+		<br />
+		<div>
+			<input type="submit" value="Submit" />
+		</div>
+	</fieldset>
+}

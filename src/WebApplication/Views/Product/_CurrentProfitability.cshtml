@@ -1,0 +1,42 @@
+﻿@using WebApplication.ViewModels
+
+@model ProductPageViewModel
+
+<div class="current-profitability-container">
+	@if (string.IsNullOrEmpty(Model.CurrentPriceBreakdownData.MissingInfo))
+	{
+		<div>
+			<div>
+				Current Price: @Model.CurrentPriceBreakdownData.NewestPrice.ToString("C") as of (@Model.CurrentPriceBreakdownData.LastUpdatedPriceDateTime) 
+			</div>
+			<div>
+				- referral pct (15%) @(Model.CurrentPriceBreakdownData.AmazonReferralFee.ToString("C"))
+			</div>
+			<div>
+				- fulfillment packing fees (@((Model.CurrentPriceBreakdownData.PerOrderFeePreview + Model.CurrentPriceBreakdownData.PerUnitFeePreview).ToString("C"))) <br/>
+			</div>
+			<div>
+				- fulfillment weight fee (@Model.CurrentPriceBreakdownData.WeightFeePreview.ToString("C"))
+			</div>
+			<div>
+				- cost of item (@Model.CurrentPriceBreakdownData.ItemCost.ToString("C"))
+			</div>
+			<div>
+				- est cost of shipping (@Model.CurrentPriceBreakdownData.EstShippingToAmazon.ToString("C"))
+			</div>
+			<div>
+				- est cost of storage (@Model.CurrentPriceBreakdownData.EstStorageFee.ToString("C"))
+			</div>
+			<div>
+				- cost of returns (@Model.CurrentPriceBreakdownData.EstReturns.ToString("C"))
+			</div>
+			<div>
+				@Model.CurrentPriceBreakdownData.EstimatedProfit.ToString("C")
+			</div>
+		</div>
+	}
+	else
+	{
+		@Html.Raw(Model.CurrentPriceBreakdownData.MissingInfo)
+	}
+</div>

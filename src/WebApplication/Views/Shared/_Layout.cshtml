@@ -1,0 +1,128 @@
+﻿@using System.Web.UI.WebControls
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<link rel="shortcut icon" href="/Content/Images/favicon.ico">
+
+		<title>@ViewBag.Title</title>
+		
+		@*Scripts*@
+		@Scripts.Render("~/bundles/js/jquery")
+		@Scripts.Render("~/bundles/js/bootstrap")
+		@Scripts.Render("~/bundles/js/misc")
+		
+		@*Styles*@
+		@Styles.Render("~/bundles/css/less")
+		@Styles.Render("~/bundles/css/jqueryui")
+		@Styles.Render("~/bundles/css/bootstrap")
+
+	</head>
+	<body>
+		<div class="container">
+			<!-- Static navbar -->
+			<div class="navbar navbar-default" role="navigation">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<div class="navbar-brand" style="padding: 2px 4px;">
+							@Html.ActionLink("JB SHOP", "Index", "Home", null, new { @class = "navbar-brand", @style = "font-size: 14px;"})
+
+							<div style="display: inline-block; font-size: 12px;">
+								@Html.Partial("_LoginPartial")
+							</div>
+						</div>
+
+					</div>
+
+					@if (!User.Identity.IsAuthenticated)
+					{
+						<div class="navbar-collapse collapse">
+							<ul class="nav navbar-nav">
+								<li>
+									@Html.ActionLink("About", "Index", new { Area = string.Empty, Controller = "About" })
+								</li>
+								<li>
+									@Html.ActionLink("Contact", "Index", new { Area = string.Empty, Controller = "Contact" })
+								</li>
+							</ul>
+						</div>
+					} else {
+						<div class="navbar-collapse collapse">
+							<ul class="nav navbar-nav">
+							
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Products<b class="caret"></b></a>
+									<ul class="dropdown-menu">
+										<li>
+											@Html.ActionLink("Report/Evaluate", "Index", new {Area = string.Empty, Controller = "Product"})
+											@Html.ActionLink("Edit or Create", "Edit", new {Area = string.Empty, Controller = "Product"})
+											@Html.ActionLink("Repricing Information", "Index", new { Area = string.Empty, Controller = "RepricingInformation" })
+										</li>
+									</ul>
+								</li>
+
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Reports <b class="caret"></b></a>
+									<ul class="dropdown-menu">
+										<li>
+											@Html.ActionLink("Sales", "Sales", new {Area = string.Empty, Controller = "Report"})
+										</li>
+										<li>
+											@Html.ActionLink("Inventory", "Inventory", new {Area = string.Empty, Controller = "Report"})
+										</li>
+										<li>
+											@Html.ActionLink("Unpriced Products", "UnpricedProducts", new {Area = string.Empty, Controller = "Report"})
+										</li>
+									</ul>
+								</li>
+
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Manufacturers <b class="caret"></b></a>
+									<ul class="dropdown-menu">
+										<li>
+											@Html.ActionLink("Add", "Add", new {Area = string.Empty, Controller = "Manufacturer"})
+										</li>
+										<li>
+											@Html.ActionLink("Price List Lookup", "PriceListLookup", new {Area = "", Controller = "Manufacturer"})
+										</li>
+									</ul>
+								</li>
+
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Shipments <b class="caret"></b></a>
+									<ul class="dropdown-menu">
+										<li>
+											@Html.ActionLink("Create", "CreateShipment", new {Area = string.Empty, Controller = "Shipment"})
+										</li>
+
+										<li>
+											@Html.ActionLink("Manage", "ManageShipment", new {Area = string.Empty, Controller = "Shipment"})
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<div class="nav navbar-nav navbar-right" style="padding-top: 12px; font-size: 10px;">
+								Inventory Value
+								<br/>
+								<div id="totalInventoryValue" style="padding-left: 10px; color: green;"></div>
+							</div>
+						</div>
+					}
+				</div>
+			</div>
+
+			@RenderBody()
+		</div>
+	</body>
+</html>

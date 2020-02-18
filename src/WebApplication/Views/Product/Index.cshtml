@@ -1,0 +1,132 @@
+﻿@{
+	ViewBag.Title = "Products";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+	.modalLoading {
+		height: 16px;
+		width: 16px;
+		background: white url('/Content/Images/ui-anim_basic_16x16.gif') right center no-repeat;
+	}
+</style>
+
+<div id="links">
+	<div style="display: inline-block; margin-left: 8px;">
+		@Html.Label("ASIN:")
+		@Html.TextBox("ASINValue")
+	</div>
+
+	<div style="display: inline-block; margin-left: 8px;">
+		<button type="button" id="ProductReportLink" class="btn btn-default">Report</button>
+		
+		<button type="button" id="ProductEvaluateLink" class="btn btn-default">Evaluate</button>
+	</div>
+	@* This is where we will display the ajax loading icon for long running partial views.*@
+	<div style="margin-left: 8px; display: inline-block;" id="modalDiv" class="modalLoading">
+	</div>
+
+	@* This is where the partial views are rendered. *@
+	<div id="mainContent">
+	</div>
+
+	<script type="text/javascript">
+		// Hide this div by default so the user doesn't think something is loading.
+		$('#modalDiv').hide();
+
+		function ShowLoadingModal() {
+			$('#modalDiv').show();
+		}
+
+		function HideLoadingModal() {
+			$('#modalDiv').hide();
+		}
+
+		function GetASINValue() {
+			var ASIN = $('#ASINValue').val();
+
+			if (ASIN === null || ASIN === undefined || ASIN.length === 0) {
+				alert('Please set a value for ASIN');
+				throw "ASIN not valid";
+			}
+
+			return ASIN;
+		}
+
+		// Put the script tag after the elements we are going to manipulate, so that the DOM is aware of them.
+		$('#ProductReportLink').click(function (e) {
+			e.preventDefault();
+
+			ShowLoadingModal();
+
+			try {
+				var ASIN = GetASINValue();
+
+				$.ajax({
+					url: '@Url.Action("Report", "Product")',
+					type: 'GET',
+					data: { asin: ASIN },
+					success: function (result) {
+						$('#mainContent').empty();
+						$('#mainContent').html(result);
+					},
+					error: function (xhr, status, error) {
+						HideLoadingModal();
+					}
+				}).done(function () {
+					HideLoadingModal();
+				});
+			} catch (err) { }
+		});
+
+		$('#ProductEditLink').click(function (e) {
+			e.preventDefault();
+
+			ShowLoadingModal();
+
+			try {
+				var ASIN = GetASINValue();
+
+				$.ajax({
+					url: '@Url.Action("Edit", "Product")',
+					type: 'GET',
+					data: { asin: ASIN },
+					success: function (result) {
+						$('#mainContent').empty();
+						$('#mainContent').html(result);
+					},
+					error: function (xhr, status, error) {
+						HideLoadingModal();
+					}
+				}).done(function () {
+					HideLoadingModal();
+				});
+			} catch (err) { }
+		});
+
+		$('#ProductEvaluateLink').click(function (e) {
+			e.preventDefault();
+
+			ShowLoadingModal();
+
+			try {
+				var ASIN = GetASINValue();
+
+				$.ajax({
+					url: '@Url.Action("Evaluate", "Product")',
+					type: 'GET',
+					data: { asin: ASIN },
+					success: function (result) {
+						$('#mainContent').empty();
+						$('#mainContent').html(result);
+					},
+					error: function (xhr, status, error) {
+						HideLoadingModal();
+					}
+				}).done(function () {
+					HideLoadingModal();
+				});
+			} catch (err) { }
+		});
+	</script>
+</div>

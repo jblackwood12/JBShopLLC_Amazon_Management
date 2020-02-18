@@ -1,0 +1,38 @@
+﻿@using Models.AdvApi
+@using Utility
+@model WebApplication.Models.PriceListFile
+
+@{
+	ViewBag.Title = "Price List Lookup";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Pricelist Lookup</h1>
+Upload a manufacturer's price list in order to lookup additional information.
+<br/>
+Input Columns: ASIN, UPC, Price
+<br/>
+You need either ASIN or UPC. Price is always required.
+<br/>
+<br/>
+
+@using (Html.BeginForm("EvaluatePriceList", "Manufacturer", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+	<fieldset>
+		<div style="margin-bottom: 6px;">
+			Fee Category: @Html.DropDownListFor(model => model.FeeCategory, Models.FeeCategory.HomeAndGarden.ToSelectList())
+		</div>
+		
+		<div style="margin-bottom: 6px;">
+			Search Index: @Html.DropDownListFor(model => model.SearchIndex, SearchIndex.Kitchen.ToSelectList())
+		</div>
+
+		<div>
+			<input type="file" id="File" name="File"/>
+		</div>
+		<br/>
+		<div>
+			<input type="submit" value="Submit" />
+		</div>
+	</fieldset>
+}

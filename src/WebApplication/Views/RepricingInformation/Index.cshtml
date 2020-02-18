@@ -1,0 +1,79 @@
+﻿@{
+	ViewBag.Title = "Edit Repricing";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Styles.Render("~/bundles/css/typeahead")
+@Scripts.Render("~/bundles/js/typeahead")
+@Scripts.Render("~/bundles/js/angularjs")
+
+<h1>Edit or Create <b><br />Repricing Information</b></h1>
+
+<div ng-app="repricingEdit" ng-controller="RepricingEditController">
+	<div>
+		<div id="searchTypeahead">
+			<input class="typeahead" type="text" placeholder="Search for an existing product to edit...">
+		</div>
+	</div>
+
+	<div id="editForm">
+		<fieldset style="border:0;">
+			<br />
+			<label for="SKU">SKU:</label>
+			<input type="text" id="SKU" ng-model="CurrentRepricingInformation.SKU" />
+			<br />
+
+			<label for="ASIN">ASIN: </label>
+			<input type="text" id="ASIN" ng-model="CurrentRepricingInformation.ASIN" />
+			<br />
+
+			<label for="MinimumPrice">MinimumPrice: </label>
+			<input type="text" id="MinimumPrice" ng-model="CurrentRepricingInformation.MinimumPrice" />
+			<br />
+
+			<label for="ProductName">ProductName: </label>
+			<input type="text" id="ProductName" ng-model="CurrentRepricingInformation.ProductName" />
+			<br />
+
+			<label for="IsCurrent">IsCurrent: </label>
+			<input type="checkbox" id="IsCurrent" ng-model="CurrentRepricingInformation.IsCurrent" />
+			<br />
+
+			<div style="padding-top: 12px; text-align: center; width: 300px;">
+				<div style="float:left;">
+					<input type="button" ng-click="EditRepricingInformation()" value="{{ IsCreate ? 'Create' : 'Save Changes'}}" class="btn btn-default btn-lg" />
+				</div>
+
+				<div style="float:right">
+					<input id="resetButton" type="button" ng-click="ResetAll()" value="Reset" class="btn btn-danger btn-lg" />
+				</div>
+			</div>
+		</fieldset>
+	</div>
+</div>
+
+<script type="text/javascript" src="~/Scripts/data/RepricingInformation/RepricingInformationEdit.js"></script>
+
+<style type="text/css">
+	#editForm input[type="text"] {
+		width: 300px;
+	}
+
+	#editForm input[type="checkbox"] {
+		width: 50px;
+	}
+
+	#editForm {
+		width: 500px;
+	}
+
+		#editForm label {
+			display: inline-block;
+			width: 150px;
+		}
+
+	#searchTypeahead .tt-dropdown-menu {
+		max-height: 300px;
+		overflow-y: auto;
+	}
+</style>

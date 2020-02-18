@@ -1,0 +1,28 @@
+﻿@model WebApplication.Models.PriceListFile
+
+@{
+	ViewBag.Title = "Sales Report";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Sales Report</h1>
+
+<div class="row">
+	<div class="col-md-12 col-sm-12 col-lg-12">
+	</div>
+	<div class="col-lg-12">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title"><i class="fa"></i> Sales By Day</h3>
+			</div>
+			<div class="panel-body">
+				<div class="flot-chart">
+					<div class="flot-chart-content" id="SalesChart" style="padding: 0; position: relative; height: 300px;">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="~/Scripts/data/Report/SalesReport.js"></script>

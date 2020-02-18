@@ -1,0 +1,26 @@
+﻿@using WebApplication.ViewModels
+@model ProductPageViewModel
+
+<div class="basic-info">
+	<div>
+		ASIN: <a href = "http://www.amazon.com/dp/@(Model.Product.ASIN)" target="_blank">@Model.Product.ASIN</a> 
+	</div>
+	<div>
+		Package Dimensions: @Model.Product.Length x @Model.Product.Width x @Model.Product.Height inches
+	</div>
+	<div>
+		Package Weight: @Model.Product.Weight pound(s)
+	</div>
+	<div>
+		Category: @Model.ProductMetadata.ProductGroup
+	</div>
+	<div>
+		Manufacturer: @Model.ProductMetadata.Manufacturer
+	</div>
+	<div>
+		Current Rank in Category: @Model.ProductMetadata.SalesRank
+	</div>
+	<div>
+		List Price: @Model.ProductMetadata.ListPrice
+	</div>
+</div>
